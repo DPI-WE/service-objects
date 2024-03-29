@@ -62,11 +62,11 @@ end
 ### Key Considerations
 - **API Key Management**: Always keep your API keys secure. Use environment variables or encrypted credentials to manage them in Rails.
 - **Error Handling**: The handle_error method demonstrates basic error handling by logging the error and potentially returning a user-friendly message. Adjust this based on your application's requirements.
-- **Response Formatting**: The format_response method is crucial for parsing and structuring the API response in a way that's useful for your application. This is where you can extract and format the data you need.
+- **Response Formatting**: The `format_response` method is crucial for parsing and structuring the API response in a way that's useful for your application. This is where you can extract and format the data you need.
 - **Caching**: To reduce API calls and improve performance, consider caching the weather data for a period of time.
 - **Asynchronous Requests**: For non-critical or background tasks, consider making API calls asynchronously to improve user experience.
 - **Testing**: Ensure to write tests for your Service Object, mocking external API calls to test your logic without hitting the actual API during tests.
-- **Naming Conventions**: Name your Service Objects after the action they perform, such as WeatherService or OrderProcessor, to keep their purpose clear and concise.
+- **Naming Conventions**: Name your Service Objects after the action they perform, such as `WeatherService` or `OrderProcessor`, to keep their purpose clear and concise.
 
 ## Embracing External APIs with Service Objects
 Integrating with external APIs is a common requirement for modern web applications. Service Objects offer a clean, maintainable way to encapsulate this functionality, keeping your code organized and testable. By following the principles outlined in this example, you can extend your application's capabilities in a scalable and efficient manner, ensuring your codebase remains robust and easy to understand.
