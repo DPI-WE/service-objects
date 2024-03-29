@@ -4,6 +4,8 @@ This module will introduce you to the concept of Service Objects, a design patte
 ### Embracing the Principles of Service-Oriented Design
 As applications grow in complexity, models and controllers can quickly become overloaded with business logic. This is where Service Objects come in, acting as a breath of fresh air, allowing us to encapsulate specific business logic or functionality into dedicated, reusable classes. A Service Object in Rails is a plain Ruby object designed to execute one single action in your business domain. Think of them as workers who have one job to do, and they do it well. This single-responsibility approach makes your application easier to understand, test, and maintain.
 
+<!-- TODO: add another non api client example -->
+
 ## Example: Fetching Weather Data
 Imagine we're building a feature for a travel planning application that provides users with real-time weather information for their destination. Instead of cluttering our models or controllers with the intricate details of this process, we'll create a Service Object to handle it elegantly. To achieve this, we'll consume an external weather API and present the data to our users.
 
