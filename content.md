@@ -4,7 +4,64 @@ This module will introduce you to the concept of Service Objects, a design patte
 ### Embracing the Principles of Service-Oriented Design
 As applications grow in complexity, models and controllers can quickly become overloaded with business logic. This is where Service Objects come in, acting as a breath of fresh air, allowing us to encapsulate specific business logic or functionality into dedicated, reusable classes. A Service Object in Rails is a plain Ruby object designed to execute one single action in your business domain. Think of them as workers who have one job to do, and they do it well. This single-responsibility approach makes your application easier to understand, test, and maintain.
 
-<!-- TODO: add another non api client example -->
+### Example: Processing an Order 🛍️
+Imagine we're building a feature for an e-commerce platform where we need to process user orders. Instead of cluttering our models or controllers with the intricate details of this process, we'll create a Service Object to handle it elegantly.
+
+1. Define the `OrderProcessor` Class
+First, we create a Ruby class dedicated to order processing. This class will live in the `app/services` directory, a place we typically store our Service Objects in a Rails application.
+
+```ruby
+# app/services/order_processor.rb
+class OrderProcessor
+  def initialize(user, order_details)
+    @user = user
+    @order_details = order_details
+  end
+
+  def call
+    validate_order_details
+    create_order
+    notify_user
+  end
+
+  private
+
+  def validate_order_details
+    # Implement validation logic here
+  end
+
+  def create_order
+    # Logic to create the order
+  end
+
+  def notify_user
+    # Send an order confirmation notification to the user
+  end
+end
+```
+
+2. Utilize the Service Object in a Controller
+Now, let's see how we can use this Service Object within our `OrdersController` to process a new order.
+
+```ruby
+# app/controllers/orders_controller.rb
+class OrdersController < ApplicationController
+  def create
+    order_processor = OrderProcessor.new(current_user, order_params)
+    if order_processor.call
+      redirect_to success_path, notice: 'Order processed successfully!'
+    else
+      redirect_to checkout_path, alert: 'There was an issue processing your order.'
+    end
+  end
+
+  private
+
+  def order_params
+    # Strong parameter implementation
+  end
+end
+```
 
 ## Example: Fetching Weather Data
 Imagine we're building a feature for a travel planning application that provides users with real-time weather information for their destination. Instead of cluttering our models or controllers with the intricate details of this process, we'll create a Service Object to handle it elegantly. To achieve this, we'll consume an external weather API and present the data to our users.
