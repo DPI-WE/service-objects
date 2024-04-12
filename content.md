@@ -218,14 +218,9 @@ Now we'll refactor this logic into a PokemonFetcher Service Object that encapsul
 
 ```ruby
 # app/services/pokemon_fetcher.rb
-require 'net/http'
-require 'json'
 
-class PokemonFetcher
-
-end
 ```
-{: .repl #pokemon_fetcher title="PokemonFetcher" readonly_lines="[1,2,3,4,5]"}
+{: .repl #pokemon_fetcher title="PokemonFetcher" readonly_lines="[1]"}
 
 ```ruby
 describe "PokemonFetcher" do
@@ -237,16 +232,6 @@ describe "PokemonFetcher" do
 end
 ```
 {:.repl-test #pokemon_fetcher_test_1 for="pokemon_fetcher" title="Pokemon Fetcher handles fetching" points="1"}
-
-```ruby
-describe "PokemonFetcher" do
-  it "handles errors gracefully" do
-    fetcher = PokemonFetcher.new('invalid_pokemon')
-    expect(fetcher.call).to be_nil
-  end
-end
-```
-{:.repl-test #pokemon_fetcher_test_2 for="pokemon_fetcher" title="Pokemon Fetcher handles errors" points="1"}
 
 ### Update the Controller Action
 Now that we've DRYed up our code by refactoring this logic into a service object, we can update our controller action.
