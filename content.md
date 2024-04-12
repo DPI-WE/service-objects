@@ -195,6 +195,79 @@ Integrating with external APIs is a common requirement for modern web applicatio
   - Incorrect. While mocks and stubs are useful, the key benefit is the isolation of logic, not the exclusive use of these tools.
 {: .choose_best #service_object_testability title="Enhancing Testability with Service Objects" points="1" answer="[2]" }
 
+## Interactive Coding Exercise: Pokémon Fetcher Service
+Let's refactor the business logic from a Rails controller that fetches Pokémon details from the [Pokémon API](https://pokeapi.co/) into a Service Object to enhance modularity and maintainability. Here's the initial implementation in the controller, where the API call is directly made:
+
+```ruby
+# app/controllers/pokemons_controller.rb
+require 'net/http'
+require 'json'
+
+class PokemonsController < ApplicationController
+  def show
+    url = URI("https://pokeapi.co/api/v2/pokemon/#{params[:name]}")
+    response = Net::HTTP.get(url)
+    @pokemon = JSON.parse(response)
+    render json: @pokemon
+  end
+end
+```
+
+### Task: Refactor Logic into a Service Object
+Now we'll refactor this logic into a PokemonFetcher Service Object that encapsulates the API call logic. This Service Object should accept a Pokémon name and return the parsed JSON data.
+
+```ruby
+# app/services/pokemon_fetcher.rb
+require 'net/http'
+require 'json'
+
+class PokemonFetcher
+
+end
+```
+{: .repl #pokemon_fetcher title="PokemonFetcher" readonly_lines="[1,2,3,4,5]"}
+
+```ruby
+describe "PokemonFetcher" do
+  it "fetches details for Pikachu" do
+    fetcher = PokemonFetcher.new('pikachu')
+    result = fetcher.call
+    expect(result['name']).to eq('pikachu')
+  end
+end
+```
+{:.repl-test #pokemon_fetcher_test_1 for="pokemon_fetcher" title="Pokemon Fetcher handles fetching" points="1"}
+
+```ruby
+describe "PokemonFetcher" do
+  it "handles errors gracefully" do
+    fetcher = PokemonFetcher.new('invalid_pokemon')
+    expect(fetcher.call).to be_nil
+  end
+end
+```
+{:.repl-test #pokemon_fetcher_test_2 for="pokemon_fetcher" title="Pokemon Fetcher handles errors" points="1"}
+
+### Update the Controller Action
+Now that we've DRYed up our code by refactoring this logic into a service object, we can update our controller action.
+
+```ruby
+# app/controllers/pokemons_controller.rb
+
+class PokemonsController < ApplicationController
+  def show
+    @pokemon = PokemonFetcher.new(params[:name]).call
+
+    render json: @pokemon
+  end
+end
+```
+
+## Conclusion
+This exercise is designed to teach students how to refactor existing business logic into a Service Object, enhancing the structure and maintainability of the Rails application. It also introduces handling external API calls and basic error management within a service-oriented design.
+
+
 ## Resources
 - [Rails Service Objects: A Comprehensive Guide](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial)
 - [Service Objects: Ruby On Rails Design Patterns](https://medium.com/nyc-ruby-on-rails/design-patterns-in-ruby-on-rails-service-objects-a90bf9178689)
+- [Pokémon API](https://pokeapi.co/)
