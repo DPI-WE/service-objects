@@ -231,7 +231,7 @@ describe "PokemonFetcher" do
   end
 end
 ```
-{:.repl-test #pokemon_fetcher_test_1 for="pokemon_fetcher" title="Pokemon Fetcher handles fetching" points="1"}
+{:.repl-test #pokemon_fetcher_test for="pokemon_fetcher" title="Pokemon Fetcher handles fetching" points="1"}
 
 ### Update the Controller Action
 Now that we've DRYed up our code by refactoring this logic into a service object, we can update our controller action.
