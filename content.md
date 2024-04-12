@@ -137,6 +137,62 @@ Integrating with external APIs is a common requirement for modern web applicatio
 - **Reduced Complexity**: By moving business logic out of models and controllers, Service Objects help keep these components clean and focused on their primary responsibilities.
 - **Enhanced Testability**: Service Objects can be tested in isolation, allowing for more comprehensive and faster unit tests.
 
+## Quiz
+- **Question 1: What is the primary role of a Service Object in Rails applications?**
+- To manage database migrations
+  - Incorrect. Service Objects are not used for database management but for encapsulating business logic.
+- To encapsulate specific business logic in a reusable class
+  - Correct! Service Objects are designed to encapsulate and execute a specific piece of business logic, promoting cleaner and more maintainable code.
+- To serve as the primary interface for the Rails application
+  - Incorrect. Service Objects are not the primary interface; they are tools for managing specific tasks within the application.
+- To handle all user authentication tasks
+  - Incorrect. While Service Objects can be used for specific authentication tasks, their use is not limited to this area.
+{: .choose_best #service_object_role title="Role of Service Objects" points="1" answer="[2]" }
+
+- **Question 2: Which directory is commonly used to store Service Objects in a Rails application?**
+- `app/models`
+  - Incorrect. Models are typically used for database interaction and business rules.
+- `app/controllers`
+  - Incorrect. Controllers handle the request-response cycle, not specific business logic tasks.
+- `app/services`
+  - Correct! The `app/services` directory is the conventional place to store Service Objects in a Rails application.
+- `app/helpers`
+  - Incorrect. Helpers are mainly used for view-related methods.
+{: .choose_best #service_object_directory title="Directory for Service Objects" points="1" answer="[3]" }
+
+- **Question 3: When should you consider using a Service Object in a Rails application?**
+- When you need to handle background jobs
+  - Incorrect. Background jobs are typically handled by job processors like Sidekiq or Resque, not directly by Service Objects.
+- When a model or controller begins to handle too much business logic
+  - Correct, but there's more to it.
+- When you need to interact with external APIs
+  - Correct, but there's more to it.
+- All of the above
+  - Correct! Service Objects are ideal for these scenarios to maintain clean and maintainable code architecture by isolating specific business processes or tasks.
+{: .choose_best #service_object_usage title="When to Use Service Objects" points="1" answer="[4]" }
+
+- **Question 4: What is a key benefit of using Service Objects in terms of code maintenance?**
+- They allow for tighter coupling of code components
+  - Incorrect. Service Objects actually promote looser coupling by isolating business logic from other parts of the application.
+- They increase the complexity of the codebase
+  - Incorrect. The aim of Service Objects is to reduce complexity by compartmentalizing responsibilities.
+- They promote code reuse and maintainability
+  - Correct! By encapsulating business logic, Service Objects make the code easier to manage and reuse.
+- They replace the need for models and controllers
+  - Incorrect. Service Objects complement models and controllers by taking on specific tasks that don't fit neatly into the traditional roles of these components.
+{: .choose_best #service_object_benefit title="Key Benefit of Service Objects" points="1" answer="[3]" }
+
+- **Question 5: How does a Service Object enhance testability in a Rails application?**
+- By requiring fewer tests due to simpler code
+  - Incorrect. While simpler code is a result, the key is the isolation of business logic which directly affects testability.
+- By allowing business logic to be tested in isolation from controllers and models
+  - Correct! Isolating business logic in Service Objects allows for more focused and less complex tests.
+- By integrating directly with the Rails testing framework
+  - Incorrect. Service Objects do not inherently integrate with testing frameworks; they are simply easier to test due to their design.
+- By using mocks and stubs exclusively in tests
+  - Incorrect. While mocks and stubs are useful, the key benefit is the isolation of logic, not the exclusive use of these tools.
+{: .choose_best #service_object_testability title="Enhancing Testability with Service Objects" points="1" answer="[2]" }
+
 ## Resources
 - [Rails Service Objects: A Comprehensive Guide](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial)
 - [Service Objects: Ruby On Rails Design Patterns](https://medium.com/nyc-ruby-on-rails/design-patterns-in-ruby-on-rails-service-objects-a90bf9178689)
