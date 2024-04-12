@@ -138,9 +138,9 @@ Integrating with external APIs is a common requirement for modern web applicatio
 - **Enhanced Testability**: Service Objects can be tested in isolation, allowing for more comprehensive and faster unit tests.
 
 ## Quiz
-- **Question 1: What is the primary role of a Service Object in Rails applications?**
+- What is the primary role of a Service Object in Rails applications?
 - To manage database migrations
-  - Incorrect. Service Objects are not used for database management but for encapsulating business logic.
+  - Incorrect. Service Objects are not used for database migrations.
 - To encapsulate specific business logic in a reusable class
   - Correct! Service Objects are designed to encapsulate and execute a specific piece of business logic, promoting cleaner and more maintainable code.
 - To serve as the primary interface for the Rails application
@@ -149,7 +149,7 @@ Integrating with external APIs is a common requirement for modern web applicatio
   - Incorrect. While Service Objects can be used for specific authentication tasks, their use is not limited to this area.
 {: .choose_best #service_object_role title="Role of Service Objects" points="1" answer="[2]" }
 
-- **Question 2: Which directory is commonly used to store Service Objects in a Rails application?**
+- Which directory is commonly used to store Service Objects in a Rails application?
 - `app/models`
   - Incorrect. Models are typically used for database interaction and business rules.
 - `app/controllers`
@@ -160,18 +160,20 @@ Integrating with external APIs is a common requirement for modern web applicatio
   - Incorrect. Helpers are mainly used for view-related methods.
 {: .choose_best #service_object_directory title="Directory for Service Objects" points="1" answer="[3]" }
 
-- **Question 3: When should you consider using a Service Object in a Rails application?**
+- When should you consider using a Service Object in a Rails application?
 - When you need to handle background jobs
-  - Incorrect. Background jobs are typically handled by job processors like Sidekiq or Resque, not directly by Service Objects.
+  - Not quite. Background jobs are typically handled by job processors like Sidekiq, GoodJob or Resque, not directly by Service Objects. However, you may want to call a service object from a background job.
 - When a model or controller begins to handle too much business logic
   - Correct, but there's more to it.
 - When you need to interact with external APIs
   - Correct, but there's more to it.
-- All of the above
+- When rendering a view
+  - Incorrect. Views are written in erb template files and rendered by a controller action.
+- When writing business logic
   - Correct! Service Objects are ideal for these scenarios to maintain clean and maintainable code architecture by isolating specific business processes or tasks.
-{: .choose_best #service_object_usage title="When to Use Service Objects" points="1" answer="[4]" }
+{: .choose_all #service_object_usage title="When to Use Service Objects" points="1" answer="[2, 3, 5]" }
 
-- **Question 4: What is a key benefit of using Service Objects in terms of code maintenance?**
+- What is a key benefit of using Service Objects in terms of code maintenance?
 - They allow for tighter coupling of code components
   - Incorrect. Service Objects actually promote looser coupling by isolating business logic from other parts of the application.
 - They increase the complexity of the codebase
@@ -182,7 +184,7 @@ Integrating with external APIs is a common requirement for modern web applicatio
   - Incorrect. Service Objects complement models and controllers by taking on specific tasks that don't fit neatly into the traditional roles of these components.
 {: .choose_best #service_object_benefit title="Key Benefit of Service Objects" points="1" answer="[3]" }
 
-- **Question 5: How does a Service Object enhance testability in a Rails application?**
+- How does a Service Object enhance testability in a Rails application?
 - By requiring fewer tests due to simpler code
   - Incorrect. While simpler code is a result, the key is the isolation of business logic which directly affects testability.
 - By allowing business logic to be tested in isolation from controllers and models
